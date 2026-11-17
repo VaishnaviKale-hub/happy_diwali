@@ -6,22 +6,24 @@ function isEdgeDetected(treshold, brightness, neighbour) {
 function detectEdjes(bitmap, treshold) {
   const rows = bitmap.length;
   const cols = bitmap[0].length;
+  const edges = [];
 
   for (let row = 0; row < rows; row++) {
+    edges[row] = [];
     for (let col = 0; col < cols; col++) {
-      let isedge = false;
+      let isEdge = false;
 
       if (row + 1 < rows) {
-        isedge = isEdgeDetected(treshold, bitmap[row][col], bitmap[row + 1][col]);
+        isEdge = isEdgeDetected(treshold, bitmap[row][col], bitmap[row + 1][col]);
       }
       if (col + 1 < cols) {
-        isedge = isEdgeDetected(treshold, bitmap[row][col], bitmap[row][col + 1]);
+        isEdge = isEdgeDetected(treshold, bitmap[row][col], bitmap[row][col + 1]);
       }
 
-      if (isedge) bitmap[row][col] = 0;
+      edges[row][col] = isEdge ? 0 : bitmap[row][col];
     }
   }
-  return bitmap;
+  return edges;
 }
 
 const bitmap = [
