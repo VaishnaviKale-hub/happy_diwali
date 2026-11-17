@@ -1,4 +1,4 @@
-function isBrightnessAboveTreshold(treshold, brightness, neighbour) {
+function isEdgeDetected(treshold, brightness, neighbour) {
   const difference = Math.abs(brightness - neighbour);
   return difference > treshold;
 };
@@ -12,10 +12,10 @@ function detectEdjes(bitmap, treshold) {
       let isedge = false;
 
       if (row + 1 < rows) {
-        isedge = isBrightnessAboveTreshold(treshold, bitmap[row][col], bitmap[row + 1][col]);
+        isedge = isEdgeDetected(treshold, bitmap[row][col], bitmap[row + 1][col]);
       }
       if (col + 1 < cols) {
-        isedge = isBrightnessAboveTreshold(treshold, bitmap[row][col], bitmap[row][col + 1]);
+        isedge = isEdgeDetected(treshold, bitmap[row][col], bitmap[row][col + 1]);
       }
 
       if (isedge) bitmap[row][col] = 0;
