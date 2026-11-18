@@ -3,7 +3,6 @@ function findTheRuns(arr) {
   const runs = [];
   let run = [arr[0]];
   let direction = null;
-  // const newDirection = null;
 
   for (let i = 1; i < arr.length; i++) {
 
@@ -12,15 +11,14 @@ function findTheRuns(arr) {
       continue;
     }
 
-    let newDirection = arr[i] > arr[i - 1]
+    const newDirection = arr[i] > arr[i - 1]
       ? "ascending"
       : "descending";
 
     if (direction === null || direction === newDirection) {
       run.push(arr[i]);
       direction = newDirection;
-    }
-    else {
+    } else {
       runs.push(run);
       run = [arr[i]];
       direction = arr[i] === arr[i - 1] ? direction : null;
@@ -35,9 +33,7 @@ console.log(findTheRuns([1, 2, 3, 4, 3, 2, 1, 2, 3, 4, 5])); //[[1, 2, 3, 4], [3
 console.log(findTheRuns([1, 2, 3, 3, 4, 3, 2, 1, 2, 3, 4, 5])); //[[1, 2, 3, 3, 4], [3, 2, 1], [2, 3, 4, 5]]
 console.log(findTheRuns([2, 3, 3, 2, 3, 2, 1, 2, 3, 4, 5])); //[[2, 3, 3], [2,3], [2, 1], [2, 3, 4, 5]]
 console.log(findTheRuns([3, 3, 2, 1, 0, 3, 2, 1, 2, 3, 4, 5])); //[[2, 3, 3], [2,3], [2, 1], [2, 3, 4, 5]]
-
-
-
+console.log(findTheRuns([]));
 
 
 
