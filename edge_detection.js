@@ -1,9 +1,9 @@
-function isEdgeDetected(treshold, brightness, neighbour) {
+function isEdgeDetected(threshold, brightness, neighbour) {
   const difference = Math.abs(brightness - neighbour);
-  return difference > treshold;
+  return difference > threshold;
 };
 
-function detectEdjes(bitmap, treshold) {
+function detectEdges(bitmap, threshold) {
   const rows = bitmap.length;
   const cols = bitmap[0].length;
   const edges = [];
@@ -11,16 +11,13 @@ function detectEdjes(bitmap, treshold) {
   for (let row = 0; row < rows; row++) {
     edges[row] = [];
     for (let col = 0; col < cols; col++) {
-      let isEdge = false;
+      const isBottomInside = row + 1 < rows;
+      const isRightInside = col + 1 < cols;
 
-      if (row + 1 < rows) {
-        isEdge = isEdgeDetected(treshold, bitmap[row][col], bitmap[row + 1][col]);
-      }
-      if (col + 1 < cols) {
-        isEdge = isEdgeDetected(treshold, bitmap[row][col], bitmap[row][col + 1]);
-      }
+      const isEdgeBottomDetected = isBottomInside && isEdgeDetected(threshold, bitmap[row][col], bitmap[row + 1][col]);
+      const isEdgeRightDetected = isRightInside && isEdgeDetected(threshold, bitmap[row][col], bitmap[row][col + 1]);
 
-      edges[row][col] = isEdge ? 0 : bitmap[row][col];
+      edges[row][col] = (isEdgeBottomDetected || isEdgeRightDetected) ? 0 : bitmap[row][col];
     }
   }
   return edges;
@@ -33,4 +30,4 @@ const bitmap = [
   [20, 20, 20, 220, 220],
 ];
 
-console.log(detectEdjes(bitmap, 50));
+console.log(detectEdges(bitmap, 50));

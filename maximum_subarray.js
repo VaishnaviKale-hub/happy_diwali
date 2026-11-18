@@ -30,21 +30,31 @@ console.log(maximumSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]));//[4,-1,2,1]
 console.log(maximumSubArray([-2, -1, -3, -4, -1, -2, -1, -5, -4]));//[-1]
 
 
-// function subArrays(arr) {
-//   const subArrays = [];
-//   let subArray = [];
+function subArrays(arr) {
+  const subArrays = [];
+  let subArray = [];
 
-//   for (let key = 0; key < arr.length; key++) {
-//     subArray = [arr[key]];
+  // for (let key = 0; key < arr.length; key++) {
+  //   subArray = [arr[key]];
 
-//     for (let index = key + 1; index < arr.length; index++) {
-//       subArrays.push([...subArray]);
-//       subArray.push(arr[index]);
-//     }
-//     subArrays.push([...subArray]);
-//   }
+  //   for (let index = key + 1; index < arr.length; index++) {
+  //     subArrays.push([...subArray]);
+  //     subArray.push(arr[index]);
+  //   }
+  //   subArrays.push([...subArray]);
+  // }
 
-//   return subArrays;
-// }
 
-// console.log(subArrays([1, 2, 3]));
+  // for (let key = 0; key < arr.length; key++) {
+  //   for (let index = key; index < arr.length; index++) {
+  //     for (let k = key; k <= index; k++) {
+  //       console.log(arr[k]);
+  //     }
+  //   }
+  // }
+
+
+  return subArrays;
+}
+
+console.log(subArrays([1, 2, 3]));
